@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { ICategoriesRepository } from "../../repositories/interfaces/ICategoriesRepository";
 
 interface IRequest {
@@ -5,8 +7,12 @@ interface IRequest {
   description: string;
 }
 
+@injectable()
 export class CreateCategoryUseCase {
-  constructor(private categoriesRepository: ICategoriesRepository) {
+  constructor(
+    @inject("CategoriesRepository")
+    private categoriesRepository: ICategoriesRepository
+  ) {
     this.categoriesRepository = categoriesRepository;
   }
 
